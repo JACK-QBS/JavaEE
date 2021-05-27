@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.example.mapper.UserMapper">
+    <resultMap id="BaseResultMap" type="org.example.model.User">
+        <id column="id" property="id" />
+        <!-- column:结果集字段 ； property:Java类型中的属性 -->
+        <result column="username" property="username" />
+        <result column="password" property="password" />
+        <result column="nickname" property="nickname" />
+        <result column="sex" property="sex" />
+        <result column="birthday" property="birthday" />
+        <result column="head" property="head" />
+        <result column="create_time" property="createTime" />
+    </resultMap>
+    
+    <select id="selectById" resultMap="BaseResultMap">
+        select * from user where id=#{id}
+    </select>
+</mapper>
