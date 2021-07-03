@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--namespace:命令空间 为对应的接口文件的全路径-->
+<mapper namespace="com.qbs.mapper.StudentMapperGY">
+
+    <!--
+    select查询标签
+    id：属性，具有唯一性，接口中的方法名
+    parameterType：入参类型
+    resultType：返回值的全路径
+    -->
+    <select id="selectStudentById"  parameterType="int" resultType="com.qbs.bean.Student">
+        select * from student where SID = #{id}
+    </select>
+
+    <!--插入数据-->
+    <insert id="insertStudent" parameterType="com.qbs.bean.Student">
+        insert into student (SID,Sname,Sage,Ssex) values (#{SID},#{Sname},#{Sage},#{Ssex})
+    </insert>
+
+    <!--删除数据-->
+    <delete id="delStudentById" parameterType="int">
+        delete from student where SID = #{id}
+    </delete>
+
+    <!--修改数据-->
+    <update id="updateNameById"  parameterType="com.qbs.bean.Student">
+        update student set Sname = #{Sname} where SID = #{SID}
+    </update>
+</mapper>
