@@ -1,0 +1,35 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation=" http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+              http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <!--开启注解扫描，指定包路径或者类名：会扫描类、方法、属性上是否有注解-->
+    <context:component-scan base-package="com.qbs"/>
+
+    <!--配置数据源:c3p0数据源-->
+    <bean id="datasource" class="com.mchange.v2.c3p0.DriverManagerDataSource">
+        <property name="driverClass" value="com.mysql.jdbc.Driver"/>
+        <property name="jdbcUrl" value="jdbc:mysql://localhost:3306/test"/>
+        <property name="user" value="root"/>
+        <property name="password" value="123456"/>
+    </bean>
+
+    <!--会话工厂的配置-->
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <!--加载mybatis的配置文件-->
+        <property name="configLocation" value="mybatis-config.xml"/>
+        <!--配置数据源-->
+        <property name="dataSource" ref="datasource"/>
+        <!--配置映射文件-->
+        <property name="mapperLocations" value="mapper/*.xml"/>
+    </bean>
+
+
+    <!--动态代理对象-->
+    <bean class="org.mybatis.spring.mapper.MapperFactoryBean">
+        <!--接口-->
+        <property name="mapperInterface" value="com.qbs.mapper.StudentMapperGX21"/>
+        <property name="sqlSessionFactory" ref="sqlSessionFactory"/>
+    </bean>
+</beans>
