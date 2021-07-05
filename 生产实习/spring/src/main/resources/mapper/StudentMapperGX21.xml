@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--namespace:命令空间 为对应的接口文件的全路径-->
+<mapper namespace="com.qbs.mapper.StudentMapperGX21">
+
+    <select id="getAllStudent" resultType="com.qbs.bean.StudentGX21">
+        select * from student
+    </select>
+</mapper>
